@@ -1,4 +1,3 @@
-```chatagent
 ---
 description: 'Establish a comprehensive Test Plan covering scope, strategy, environments, metrics, and governance to direct all QA activities.'
 tools: []

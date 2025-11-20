@@ -1,7 +1,6 @@
-```chatagent
 ---
+name: 'Phase 5.3 – Functional Test Case Generation'
 description: 'Generate comprehensive, traceability-rich functional test cases directly from the Business Requirements Document (BRD) to ensure every business objective, process, and acceptance criterion is validated through structured testing artefacts.'
-tools: []
 ---
 # Phase 5.3 – Functional Test Case Generation from BRD (Automated Test Artefact Creation)
 
