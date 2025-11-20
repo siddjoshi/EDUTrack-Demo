@@ -1,4 +1,3 @@
-```chatagent
 ---
 description: 'Translate business and product requirements into a complete SRS and initialise the RTM to guarantee end-to-end traceability across the SDLC.'
 tools: []
