@@ -41,24 +41,34 @@ def get_github_token() -> Optional[str]:
         )
         remote_url = result.stdout.strip()
         
-        # Extract host
-        if 'github.com' in remote_url:
-            # Try git credential fill
-            credential_input = f"protocol=https\nhost=github.com\n\n"
-            result = subprocess.run(
-                ['git', 'credential', 'fill'],
-                input=credential_input,
-                capture_output=True, text=True, cwd=repo_root
-            )
-            
-            # Parse credential output
-            for line in result.stdout.split('\n'):
-                if line.startswith('password='):
-                    password = line.split('=', 1)[1].strip()
-                    if password:  # Only return if not empty
-                        return password
-    except Exception as e:
-        print(f"Could not get token from git credential helper: {e}")
+        # Validate this is a GitHub URL
+        if 'github.com' not in remote_url:
+            return None
+        
+        # Try git credential fill
+        credential_input = f"protocol=https\nhost=github.com\n\n"
+        result = subprocess.run(
+            ['git', 'credential', 'fill'],
+            input=credential_input,
+            capture_output=True, text=True, cwd=repo_root
+        )
+        
+        # Parse credential output
+        for line in result.stdout.split('\n'):
+            if line.startswith('password='):
+                password = line.split('=', 1)[1].strip()
+                if password:  # Only return if not empty
+                    return password
+                    
+    except subprocess.CalledProcessError as e:
+        # Git command failed - likely not in a git repository
+        pass
+    except FileNotFoundError:
+        # Git not installed
+        pass
+    except Exception:
+        # Other unexpected errors - silently continue
+        pass
     
     return None
 
@@ -133,13 +143,28 @@ def main():
     
     # Collect backlog items
     print("\n🔍 Collecting backlog items...")
-    # Get backlog directory relative to script location
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    repo_root = os.path.dirname(script_dir)
-    backlog_dir = os.path.join(repo_root, 'backlog')
+    
+    # Get backlog directory - try multiple methods for robustness
+    backlog_dir = None
+    
+    # Method 1: Use git repository root (most reliable)
+    try:
+        result = subprocess.run(
+            ['git', 'rev-parse', '--show-toplevel'],
+            capture_output=True, text=True, check=True
+        )
+        repo_root = result.stdout.strip()
+        backlog_dir = os.path.join(repo_root, 'backlog')
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        # Method 2: Fallback to relative path from script location
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        repo_root = os.path.dirname(script_dir)
+        backlog_dir = os.path.join(repo_root, 'backlog')
     
     if not os.path.exists(backlog_dir):
         print(f"❌ Error: Backlog directory not found: {backlog_dir}")
+        print("\nPlease run this script from the repository root or ensure")
+        print("the 'backlog' directory exists in the expected location.")
         return 1
     
     items = collect_backlog_items(backlog_dir)
