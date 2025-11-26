@@ -1050,4 +1050,3 @@ The High-Level Design (HLD) document (`docs/design/HLD.md`) provides the compreh
 **RTM Status:** ✅ Updated with HLD Traceability  
 **Last Updated:** 2025-11-26  
 **Next Review:** After LLD development (Week 10)
-**Next Review:** After Sprint 1 (pipeline implementation and quality gate validation)

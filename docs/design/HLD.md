@@ -86,12 +86,12 @@ This HLD covers the complete EDUTrack platform including:
 EDUTrack addresses critical organizational challenges in employee training and skill development:
 
 **Business Drivers:**
-- **Content Creation Efficiency:** Reduce training content creation from 50 hours to &lt;15 hours per module (70% reduction) - *BRD-OBJ-01*
+- **Content Creation Efficiency:** Reduce training content creation from 50 hours to <15 hours per module (70% reduction) - *BRD-OBJ-01*
 - **Scale Content Production:** Increase from 60 to 120+ modules per year - *BRD-OBJ-02*
 - **Personalized Learning:** Deliver personalized learning paths to all 10,000 employees - *BRD-OBJ-03*
 - **User Adoption:** Achieve 85% monthly active users (8,500 employees) - *BRD-OBJ-05*
 - **Compliance Excellence:** Achieve 98% mandatory training completion rate - *BRD-OBJ-07*
-- **AI Governance:** Maintain &gt;95% SME approval rate for AI-generated content - *BRD-OBJ-12*
+- **AI Governance:** Maintain >95% SME approval rate for AI-generated content - *BRD-OBJ-12*
 
 **Strategic Alignment:**
 - Digital Transformation: Demonstrates Azure AI capabilities at scale
@@ -107,7 +107,7 @@ EDUTrack addresses critical organizational challenges in employee training and s
 | **Timeline** | MVP delivery by Q2 2026 (6 months from approval) | Phased feature delivery | BRD Section 10.1 |
 | **Azure-Only** | Must use approved Azure services only | No AWS/GCP/third-party cloud | BRD-CONST-Tech |
 | **Data Residency** | All data within corporate Azure tenant | No public SaaS; EU/US regions | SEC-DATA-008 |
-| **Performance** | &lt;20s content generation; &lt;500ms search; 99.9% uptime | Architecture must support targets | PERF-LAT-*, AVAIL-001 |
+| **Performance** | <20s content generation; <500ms search; 99.9% uptime | Architecture must support targets | PERF-LAT-*, AVAIL-001 |
 | **Compliance** | GDPR, ISO 27001, 7-year audit retention | Privacy by design; audit trails | COMP-001 to COMP-010 |
 | **Browser Support** | Chrome, Edge, Safari, Firefox (latest 2 versions) | No native mobile apps in Phase 1 | BRD-CONST-Tech-5 |
 
@@ -115,7 +115,7 @@ EDUTrack addresses critical organizational challenges in employee training and s
 
 | ID | Assumption | Category | Validation Method |
 |----|------------|----------|-------------------|
-| ASM-001 | Azure OpenAI service remains available with &lt;50% price fluctuation | Technology | Monitor Azure pricing |
+| ASM-001 | Azure OpenAI service remains available with <50% price fluctuation | Technology | Monitor Azure pricing |
 | ASM-002 | 20+ SMEs available 4-6 hours/week for content review | Resource | Manager commitments |
 | ASM-003 | Modern browsers support required features (WebSocket, ES6+) | Technology | Compatibility testing |
 | ASM-004 | Corporate network supports 10,000 concurrent HTTPS connections | Infrastructure | Network capacity testing |
@@ -138,11 +138,11 @@ pie title Quality Attribute Priority (Weighted)
 | Priority | Quality Attribute | NFR Reference | Target |
 |----------|-------------------|---------------|--------|
 | 1 | Security | SEC-* (30 NFRs) | Zero data breaches; OWASP ASVS Level 2 |
-| 2 | Performance | PERF-* (23 NFRs) | &lt;20s generation; &lt;500ms search (P95) |
-| 3 | Availability | AVAIL-* (10 NFRs) | 99.9% uptime; &lt;30min MTTR |
+| 2 | Performance | PERF-* (23 NFRs) | <20s generation; <500ms search (P95) |
+| 3 | Availability | AVAIL-* (10 NFRs) | 99.9% uptime; <30min MTTR |
 | 4 | Scalability | PERF-TH-* | 10,000 concurrent users; 1M documents |
-| 5 | Maintainability | MAINT-* (10 NFRs) | &gt;80% code coverage; modular architecture |
-| 6 | Usability | ACCESS-* (10 NFRs) | WCAG 2.1 AA; &lt;1hr learner training |
+| 5 | Maintainability | MAINT-* (10 NFRs) | >80% code coverage; modular architecture |
+| 6 | Usability | ACCESS-* (10 NFRs) | WCAG 2.1 AA; <1hr learner training |
 | 7 | Compliance | COMP-* (10 NFRs) | GDPR; ISO 27001; 7-year retention |
 
 ---
@@ -767,13 +767,13 @@ flowchart LR
 
 | API | Endpoints | Auth | Rate Limit | SLA (P95) |
 |-----|-----------|------|------------|-----------|
-| **Authentication API** | 5 | OAuth 2.0 | 100/min/user | &lt;500ms |
-| **Content Ingestion API** | 4 | Bearer Token | 10/min/user | &lt;60s |
-| **AI Generation API** | 4 | Bearer Token | 5/min/user | &lt;20s |
-| **Learning API** | 10 | Bearer Token | 100/min/user | &lt;500ms |
-| **Search API** | 3 | Bearer Token | 50/min/user | &lt;500ms |
-| **Analytics API** | 8 | Bearer Token | 20/min/user | &lt;3s |
-| **Admin API** | 12 | Bearer Token | 50/min/user | &lt;1s |
+| **Authentication API** | 5 | OAuth 2.0 | 100/min/user | <500ms |
+| **Content Ingestion API** | 4 | Bearer Token | 10/min/user | <60s |
+| **AI Generation API** | 4 | Bearer Token | 5/min/user | <20s |
+| **Learning API** | 10 | Bearer Token | 100/min/user | <500ms |
+| **Search API** | 3 | Bearer Token | 50/min/user | <500ms |
+| **Analytics API** | 8 | Bearer Token | 20/min/user | <3s |
+| **Admin API** | 12 | Bearer Token | 50/min/user | <1s |
 
 ### 7.3 Integration Sequence: Content Ingestion
 
@@ -956,10 +956,10 @@ flowchart TB
 
 | Metric | NFR Reference | Target | Architecture Support |
 |--------|---------------|--------|---------------------|
-| **Content Generation** | PERF-LAT-005 | &lt;20s (P95) | Queue-based processing; OpenAI capacity |
-| **Search Response** | PERF-LAT-003 | &lt;500ms (P95) | AI Search with 3 replicas; Redis caching |
-| **Page Load** | PERF-LAT-002 | &lt;3s (P95) | CDN; code splitting; lazy loading |
-| **API Response** | PERF-LAT-001 to 004 | &lt;1s (P95) | Redis caching; connection pooling |
+| **Content Generation** | PERF-LAT-005 | <20s (P95) | Queue-based processing; OpenAI capacity |
+| **Search Response** | PERF-LAT-003 | <500ms (P95) | AI Search with 3 replicas; Redis caching |
+| **Page Load** | PERF-LAT-002 | <3s (P95) | CDN; code splitting; lazy loading |
+| **API Response** | PERF-LAT-001 to 004 | <1s (P95) | Redis caching; connection pooling |
 | **Concurrent Users** | PERF-TH-001 | 10,000 | Auto-scaling; load balancing |
 | **Database Connections** | PERF-TH-005 | 500 concurrent | Connection pooling; read replicas |
 | **Platform Uptime** | AVAIL-001 | 99.9% | Multi-AZ; health probes; auto-failover |
@@ -1031,11 +1031,11 @@ flowchart TB
 
 | Metric Category | Metrics | Alert Threshold | Response |
 |-----------------|---------|-----------------|----------|
-| **Availability** | Uptime %, Health probe | &lt;99.9% | P1 - Immediate escalation |
-| **Latency** | P50, P95, P99 response times | P95 &gt; SLA target | P2 - Investigate |
-| **Errors** | 5xx rate, exception rate | &gt;1% error rate | P2 - Investigate |
-| **Throughput** | Requests/sec, queue depth | &gt;90% capacity | P3 - Scale out |
-| **Saturation** | CPU, memory, connections | &gt;85% utilization | P3 - Scale up |
+| **Availability** | Uptime %, Health probe | <99.9% | P1 - Immediate escalation |
+| **Latency** | P50, P95, P99 response times | P95 > SLA target | P2 - Investigate |
+| **Errors** | 5xx rate, exception rate | >1% error rate | P2 - Investigate |
+| **Throughput** | Requests/sec, queue depth | >90% capacity | P3 - Scale out |
+| **Saturation** | CPU, memory, connections | >85% utilization | P3 - Scale up |
 | **Business KPIs** | MAU, completion rate, search success | Below targets | Weekly review |
 
 ### 10.3 Disaster Recovery
@@ -1095,7 +1095,7 @@ flowchart TB
     end
     
     subgraph Test["Test Stage"]
-        UnitTests[Unit Tests<br/>&gt;80% Coverage]
+        UnitTests[Unit Tests<br/>>80% Coverage]
         IntegrationTests[Integration Tests]
         E2ETests[E2E Tests<br/>Playwright]
     end
